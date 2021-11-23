@@ -229,7 +229,7 @@ class AddHistogramsHandler(api_request_handler.ApiRequestHandler):
       raise api_request_handler.BadRequestError('Missing "data" parameter')
 
     filename = uuid.uuid4()
-    params = {'gcs_file_path': '/br-add-histograms-cache/%s' % filename}
+    params = {'gcs_file_path': '/brave-perf-add-histograms-cache/%s' % filename}
 
     gcs_file = cloudstorage.open(
         params['gcs_file_path'],

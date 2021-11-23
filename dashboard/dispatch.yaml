@@ -1,44 +1,44 @@
 dispatch:
   # Pinpoint routing rules
-  #- url: "pinpoint-dot-test-b-perf.appspot.com/*"
+  #- url: "pinpoint-dot-brave-perf-dashboard.appspot.com/*"
   #  service: pinpoint
 
   # TODO(atuchin): maybe enable sheriff config?
   # Sheriff config routing rules
-  #- url: "sheriff-config-dot-test-b-perf.appspot.com/*"
+  #- url: "sheriff-config-dot-brave-perf-dashboard.appspot.com/*"
   #  service: sheriff-config
 
   # Upload processing rules
-  - url: "test-b-perf.appspot.com/add_histograms/process"
+  - url: "brave-perf-dashboard.appspot.com/add_histograms/process"
     service: upload-processing
-  - url: "test-b-perf.appspot.com/add_histograms_queue"
+  - url: "brave-perf-dashboard.appspot.com/add_histograms_queue"
     service: upload-processing
-  - url: "test-b-perf.appspot.com/add_point_queue"
+  - url: "brave-perf-dashboard.appspot.com/add_point_queue"
     service: upload-processing
 
   # We also intercept all the requests headed for the `upload` service for the
   # URLs we care about. This happens when tasks are queued up for Cloud Tasks
   # coming from a service, where it ends up hard-coding the service name in the
   # URL.
-  - url: "*.test-b-perf.appspot.com/add_histograms/process"
+  - url: "*.brave-perf-dashboard.appspot.com/add_histograms/process"
     service: upload-processing
-  - url: "*.test-b-perf.appspot.com/add_histograms_queue"
+  - url: "*.brave-perf-dashboard.appspot.com/add_histograms_queue"
     service: upload-processing
-  - url: "*.test-b-perf.appspot.com/add_point_queue"
+  - url: "*.brave-perf-dashboard.appspot.com/add_point_queue"
     service: upload-processing
 
   # Upload routing rules
-  - url: "test-b-perf.appspot.com/add_histograms"
+  - url: "brave-perf-dashboard.appspot.com/add_histograms"
     service: upload
-  - url: "test-b-perf.appspot.com/add_point"
+  - url: "brave-perf-dashboard.appspot.com/add_point"
     service: upload
 
   # API routing rules
-  - url: "test-b-perf.appspot.com/api/*"
+  - url: "brave-perf-dashboard.appspot.com/api/*"
     service: api
-  - url: "test-b-perf.appspot.com/graph_json"
+  - url: "brave-perf-dashboard.appspot.com/graph_json"
     service: api
-  - url: "test-b-perf.appspot.com/group_report"
+  - url: "brave-perf-dashboard.appspot.com/group_report"
     service: api
-  - url: "test-b-perf.appspot.com/list_tests"
+  - url: "brave-perf-dashboard.appspot.com/list_tests"
     service: api
