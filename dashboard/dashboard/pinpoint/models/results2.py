@@ -101,7 +101,8 @@ class _GcsFileStream(object):
 
 
 def _GetCloudStorageName(job_id):
-  return '/results2-public/%s.html' % job_id
+  #TODO(atuchin): change bucket name if we want to support pinpoint.
+  return '/br-results2-public/%s.html' % job_id
 
 
 def GetCachedResults2(job):

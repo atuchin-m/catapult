@@ -581,6 +581,10 @@ def IsGroupMember(identity, group):
   cached = GetCachedIsGroupMember(identity, group)
   if cached is not None:
     return cached
+
+  #TODO(atuchin): add brave service accounts
+  return identity.endswith('@brave.com')
+
   try:
     discovery_url = ('https://chrome-infra-auth.appspot.com'
                      '/_ah/api/discovery/v1/apis/{api}/{apiVersion}/rest')

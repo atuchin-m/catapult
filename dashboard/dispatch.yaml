@@ -1,43 +1,44 @@
 dispatch:
   # Pinpoint routing rules
-  - url: "pinpoint-dot-chromeperf.appspot.com/*"
-    service: pinpoint
+  #- url: "pinpoint-dot-test-b-perf.appspot.com/*"
+  #  service: pinpoint
 
+  # TODO(atuchin): maybe enable sheriff config?
   # Sheriff config routing rules
-  - url: "sheriff-config-dot-chromeperf.appspot.com/*"
-    service: sheriff-config
+  #- url: "sheriff-config-dot-test-b-perf.appspot.com/*"
+  #  service: sheriff-config
 
   # Upload processing rules
-  - url: "chromeperf.appspot.com/add_histograms/process"
+  - url: "test-b-perf.appspot.com/add_histograms/process"
     service: upload-processing
-  - url: "chromeperf.appspot.com/add_histograms_queue"
+  - url: "test-b-perf.appspot.com/add_histograms_queue"
     service: upload-processing
-  - url: "chromeperf.appspot.com/add_point_queue"
+  - url: "test-b-perf.appspot.com/add_point_queue"
     service: upload-processing
 
   # We also intercept all the requests headed for the `upload` service for the
   # URLs we care about. This happens when tasks are queued up for Cloud Tasks
   # coming from a service, where it ends up hard-coding the service name in the
   # URL.
-  - url: "*.chromeperf.appspot.com/add_histograms/process"
+  - url: "*.test-b-perf.appspot.com/add_histograms/process"
     service: upload-processing
-  - url: "*.chromeperf.appspot.com/add_histograms_queue"
+  - url: "*.test-b-perf.appspot.com/add_histograms_queue"
     service: upload-processing
-  - url: "*.chromeperf.appspot.com/add_point_queue"
+  - url: "*.test-b-perf.appspot.com/add_point_queue"
     service: upload-processing
 
   # Upload routing rules
-  - url: "chromeperf.appspot.com/add_histograms"
+  - url: "test-b-perf.appspot.com/add_histograms"
     service: upload
-  - url: "chromeperf.appspot.com/add_point"
+  - url: "test-b-perf.appspot.com/add_point"
     service: upload
 
   # API routing rules
-  - url: "chromeperf.appspot.com/api/*"
+  - url: "test-b-perf.appspot.com/api/*"
     service: api
-  - url: "chromeperf.appspot.com/graph_json"
+  - url: "test-b-perf.appspot.com/graph_json"
     service: api
-  - url: "chromeperf.appspot.com/group_report"
+  - url: "test-b-perf.appspot.com/group_report"
     service: api
-  - url: "chromeperf.appspot.com/list_tests"
+  - url: "test-b-perf.appspot.com/list_tests"
     service: api
