@@ -13,8 +13,7 @@ jobs:
       - name: Deploy
         uses: google-github-actions/deploy-appengine@v0.4.0
         with:
-          working_directory: dashboard/
-          deliverables: api.yaml app.yaml dispatch.yaml index.yaml upload.yaml upload-processing.yaml
+          deliverables: dashboard/api.yaml dashboard/app.yaml dashboard/dispatch.yaml dashboard/index.yaml dashboard/upload.yaml dashboard/upload-processing.yaml
           credentials: ${{ secrets.GCP_SA_KEY }}
           promote: true
           version: v1
