@@ -20,4 +20,4 @@ jobs:
         uses: actions/setup-python@v2.3.0
         with:
           python-version: '2.x'
-      - run: python dashboard/bin/deploy --promote, app.yaml, api.yaml, upload.yaml, upload-processing.yaml, dispatch.yaml, index.yaml
+      - run: python dashboard/bin/deploy --promote app.yaml api.yaml upload.yaml upload-processing.yaml dispatch.yaml index.yaml
