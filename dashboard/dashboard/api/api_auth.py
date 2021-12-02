@@ -40,6 +40,7 @@ OAUTH_CLIENT_ID_ALLOWLIST = [
     '446450136466-2hr92jrq8e6i4tnsa56b52vacp7t3936.apps.googleusercontent.com',
 
     #TODO(atuchin): add brave sercice accounts here, delete some google entries
+    '100335329510016050185',
 ]
 
 
