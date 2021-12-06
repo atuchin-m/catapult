@@ -43,6 +43,8 @@ OAUTH_CLIENT_ID_ALLOWLIST = [
     '100335329510016050185',
     #(chudson):add GCP project oauth clientID
     '1054993791011-qgn013uh0dpdv3t2ksotobg3i8112btn.apps.googleusercontent.com',
+    #(chudson):add additional desktop app type clientID
+    '1054993791011-vndct6i0bj5ubf55j6smthnbfclcj547.apps.googleusercontent.com',
 ]
 
 
