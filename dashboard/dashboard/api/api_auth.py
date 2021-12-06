@@ -41,6 +41,8 @@ OAUTH_CLIENT_ID_ALLOWLIST = [
 
     #TODO(atuchin): add brave sercice accounts here, delete some google entries
     '100335329510016050185',
+    #(chudson):add GCP project oauth clientID
+    '1054993791011-qgn013uh0dpdv3t2ksotobg3i8112btn.apps.googleusercontent.com',
 ]
 
 
