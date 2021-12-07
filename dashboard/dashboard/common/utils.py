@@ -582,7 +582,9 @@ def IsGroupMember(identity, group):
   if cached is not None:
     return cached
 
-  #TODO(atuchin): add brave service accounts
+  logging.info(identity)
+  if identity == '1054993791011-vndct6i0bj5ubf55j6smthnbfclcj547.apps.googleusercontent.com':
+    return True
   return identity.endswith('@brave.com')
 
   try:
