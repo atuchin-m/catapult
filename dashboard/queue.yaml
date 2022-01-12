@@ -11,7 +11,7 @@ queue:
 
 
  # upload-processing:
- - name: histograms-queue
+ - name: histogram-queue
    target: upload-processing
    rate: 10/s
    max_concurrent_requests: 20
