@@ -52,7 +52,10 @@ _DEVTOOLS_CONNECTION_ERRORS = (
     socket.error)
 
 
-def GetDevToolsBackEndIfReady(devtools_port, app_backend, browser_target=None, enable_tracing=True):
+def GetDevToolsBackEndIfReady(devtools_port,
+                              app_backend,
+                              browser_target=None,
+                              enable_tracing=True):
   client = _DevToolsClientBackend(app_backend)
   try:
     client.Connect(devtools_port, browser_target, enable_tracing)
@@ -116,9 +119,8 @@ class _DevToolsClientBackend(object):
       resp = self.GetVersion()
       if 'webSocketDebuggerUrl' in resp:
         return resp['webSocketDebuggerUrl']
-      else:
-        raise FuchsiaBrowserTargetNotFoundException(
-            'Could not get the browser target.')
+      raise FuchsiaBrowserTargetNotFoundException(
+          'Could not get the browser target.')
     return 'ws://127.0.0.1:%i%s' % (self._local_port, self._browser_target)
 
   @property
@@ -520,7 +522,7 @@ class _DevToolsClientBackend(object):
     This should only be called by an Android backend.
     """
     self._CreateNativeProfilingBackendIfNeeded()
-    return self._native_profiling_backend.dumpProfilingDataOfAllProcesses(
+    return self._native_profiling_backend.DumpProfilingDataOfAllProcesses(
         timeout)
 
   @property

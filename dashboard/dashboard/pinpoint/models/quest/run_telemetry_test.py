@@ -76,7 +76,7 @@ class RunTelemetryTest(run_performance_test.RunPerformanceTest):
     # deprecated and will be removed soon (EOY 2020).
     # TODO(dberris): Move this out to a configuration elsewhere.
     command = [
-        'luci-auth', 'context', '--', 'vpython', '../../testing/test_env.py',
+        'luci-auth', 'context', '--', 'vpython3', '../../testing/test_env.py',
         '../../testing/scripts/run_performance_tests.py',
         '../../tools/perf/run_benchmark'
     ]
@@ -97,8 +97,10 @@ class RunTelemetryTest(run_performance_test.RunPerformanceTest):
   def _ExtraTestArgs(cls, arguments):
     extra_test_args = []
 
-    # Run tests even if they're configured to be ignored in expectations.config
-    extra_test_args.append('-d')
+    # If we're running a single test,
+    # do so even if it's configured to be ignored in expectations.config.
+    if not arguments.get('story_tags'):
+      extra_test_args.append('-d')
 
     benchmark = arguments.get('benchmark')
     if not benchmark:

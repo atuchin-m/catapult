@@ -1192,18 +1192,25 @@ class DeviceUtilsInstallTest(DeviceUtilsTest):
       with self.assertCalls(
           (mock.call.py_utils.tempfile_ext.NamedTemporaryDirectory(),
            mock_zip_temp_dir),
+          self.call.device.RunShellCommand([
+              'rm', '-rf',
+              '/sdcard/Android/data/test.package/files/local_testing'
+          ],
+                                           as_root=True),
           (mock.call.os.rename('fake1-master.apk', '/test/tmp/dir/fake1.apk')),
           (self.call.device.PushChangedFiles(
               [('/test/tmp/dir', '/data/local/tmp/modules/test.package')],
               delete_device_stale=True)),
-          self.call.device.RunShellCommand(
-              ['mkdir', '-p', '/sdcard/Android/data/test.package/files'],
-              as_root=True),
           self.call.device.RunShellCommand([
-              'cp', '-a', '/data/local/tmp/modules/test.package',
+              'mkdir', '-p',
               '/sdcard/Android/data/test.package/files/local_testing'
           ],
                                            as_root=True),
+          self.call.device.RunShellCommand(
+              'cp -a /data/local/tmp/modules/test.package/* ' +
+              '/sdcard/Android/data/test.package/files/local_testing/',
+              as_root=True,
+              shell=True),
           (mock.call.os.path.exists(TEST_APK_PATH), True),
           (self.call.device._GetApplicationPathsInternal(TEST_PACKAGE), []),
           self.call.adb.Install(TEST_APK_PATH,
@@ -1631,10 +1638,10 @@ class DeviceUtilsRunShellCommandTest(DeviceUtilsTest):
     temp_file = MockTempFile('/sdcard/temp-123')
     cmd_redirect = '( %s )>%s 2>&1' % (cmd, temp_file.name)
     with self.assertCalls(
-        (mock.call.devil.android.device_temp_file.DeviceTempFile(self.adb),
-         temp_file),
-        (self.call.adb.Shell(cmd_redirect)), (self.call.device.ReadFile(
-            temp_file.name, force_pull=True), 'something')):
+        (mock.call.devil.android.device_temp_file.DeviceTempFile(
+            self.adb), temp_file), (self.call.adb.Shell(cmd_redirect)),
+        (self.call.device.ReadFile(
+            temp_file.name, force_pull=True, encoding='utf8'), 'something')):
       self.assertEqual(['something'],
                        self.device.RunShellCommand(cmd,
                                                    shell=True,
@@ -1653,9 +1660,10 @@ class DeviceUtilsRunShellCommandTest(DeviceUtilsTest):
     cmd_redirect = '( %s )>%s 2>&1' % (cmd, temp_file.name)
     with self.assertCalls(
         (self.call.adb.Shell(cmd), self.ShellError('', None)),
-        (mock.call.devil.android.device_temp_file.DeviceTempFile(self.adb),
-         temp_file), (self.call.adb.Shell(cmd_redirect)),
-        (self.call.device.ReadFile(mock.ANY, force_pull=True), 'something')):
+        (mock.call.devil.android.device_temp_file.DeviceTempFile(
+            self.adb), temp_file), (self.call.adb.Shell(cmd_redirect)),
+        (self.call.device.ReadFile(mock.ANY, force_pull=True,
+                                   encoding='utf8'), 'something')):
       self.assertEqual(['something'],
                        self.device.RunShellCommand(cmd,
                                                    shell=True,

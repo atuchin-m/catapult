@@ -23,6 +23,7 @@ from dashboard.pinpoint.models.change import commit
 from dashboard.pinpoint.models.quest import read_value
 from dashboard.pinpoint.models.quest import run_test
 from dashboard.services import swarming
+from dateutil.parser import isoparse
 from tracing.value import histogram_set
 from tracing.value import histogram as histogram_module
 
@@ -419,6 +420,7 @@ class GenerateResults2Test(testing_common.TestCase):
                 'repo': 'fakerepo',
                 'git_hash': 'fakehashA',
                 'commit_position': 437745,
+                'commit_created': '2021-12-08 00:00:00.000000',
                 'branch': 'refs/heads/main'
             }
         },
@@ -452,6 +454,7 @@ class GenerateResults2Test(testing_common.TestCase):
             'checkout': {
                 'patch_gerrit_revision': 'fake_patch_set',
                 'commit_position': 437745,
+                'commit_created': '2021-12-08 00:00:00.000000',
                 'patch_gerrit_change': 'fake_patch_issue',
                 'repo': 'fakeRepo',
                 'branch': 'refs/heads/main',
@@ -500,7 +503,8 @@ class GenerateResults2Test(testing_common.TestCase):
         _CreateHistogram('Vanilla-ES2015-Babel-Webpack-TodoMVC', 13),
         _CreateHistogram('Vanilla-ES2015-TodoMVC', 14),
         _CreateHistogram('VanillaJS-TodoMVC', 15),
-        _CreateHistogram('VueJS-TodoMVC', 16)
+        _CreateHistogram('VueJS-TodoMVC', 16),
+        _CreateHistogram('RunsPerMinute', 17)
     ])
     job = _SetupBQTest(mock_commit_info, mock_swarming, mock_render, mock_json,
                        expected_histogram_set, set_device_os=False)
@@ -526,6 +530,7 @@ class GenerateResults2Test(testing_common.TestCase):
                 'repo': 'fakerepo',
                 'git_hash': 'fakehashA',
                 'commit_position': 437745,
+                'commit_created': '2021-12-08 00:00:00.000000',
                 'branch': 'refs/heads/main'
             }
         },
@@ -544,6 +549,7 @@ class GenerateResults2Test(testing_common.TestCase):
                 'Preact_TodoMVC': 10,
                 'React_Redux_TodoMVC': 11,
                 'React_TodoMVC': 12,
+                'RunsPerMinute': 17,
                 'Vanilla_ES2015_Babel_Webpack_TodoMVC': 13,
                 'Vanilla_ES2015_TodoMVC': 14,
                 'VanillaJS_TodoMVC': 15,
@@ -571,6 +577,7 @@ class GenerateResults2Test(testing_common.TestCase):
             'checkout': {
                 'patch_gerrit_revision': 'fake_patch_set',
                 'commit_position': 437745,
+                'commit_created': '2021-12-08 00:00:00.000000',
                 'patch_gerrit_change': 'fake_patch_issue',
                 'repo': 'fakeRepo',
                 'branch': 'refs/heads/main',
@@ -592,6 +599,7 @@ class GenerateResults2Test(testing_common.TestCase):
                 'Preact_TodoMVC': 10,
                 'React_Redux_TodoMVC': 11,
                 'React_TodoMVC': 12,
+                'RunsPerMinute': 17,
                 'Vanilla_ES2015_Babel_Webpack_TodoMVC': 13,
                 'Vanilla_ES2015_TodoMVC': 14,
                 'VanillaJS_TodoMVC': 15,
@@ -644,7 +652,8 @@ class GenerateResults2Test(testing_common.TestCase):
         'repo': 'fakerepo',
         'git_hash': 'fakehashA',
         'commit_position': 437745,
-        'branch': 'refs/heads/main'
+        'branch': 'refs/heads/main',
+        'commit_created': '2021-12-08 00:00:00.000000'
     }
     ck_b = {
         'patch_gerrit_revision': 'fake_patch_set',
@@ -652,7 +661,8 @@ class GenerateResults2Test(testing_common.TestCase):
         'patch_gerrit_change': 'fake_patch_issue',
         'repo': 'fakeRepo',
         'branch': 'refs/heads/main',
-        'git_hash': 'fakehashB'
+        'git_hash': 'fakehashB',
+        'commit_created': '2021-12-08 00:00:00.000000'
     }
 
     expected_rows = [
@@ -705,7 +715,7 @@ def _SetupBQTest(mock_commit_info, mock_swarming, mock_render, mock_json,
       'author': {
           'email': 'author@chromium.org'
       },
-      'created': datetime.date.today(),
+      'created': isoparse('2021-12-08'),
       'commit': 'aaa7336',
       'committer': {
           'time': 'Fri Jan 01 00:01:00 2016'
