@@ -26,6 +26,7 @@ def EmailSheriff(subscriptions, test, anomaly):
     logging.warning('No email address for %s', subscriptions)
     return
   anomaly_info = email_template.GetAlertInfo(anomaly, test)
+  return
   mail.send_mail(
       sender='gasper-alerts@google.com',
       to=receivers,
