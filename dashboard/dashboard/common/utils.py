@@ -493,10 +493,7 @@ def IsInternalUser():
 
     from dashboard.common import utils
     from dashboard.api import api_auth
-    client_id = oauth.get_client_id(utils.OAUTH_SCOPES)
-    logging.info('Checking IsInternalUser for client_id %s', client_id)
-    if client_id in api_auth.OAUTH_CLIENT_ID_ALLOWLIST:
-      is_internal_user = True
+    logging.info('Checking IsInternalUser for client_id %s', email)
     if email.endswith('.gserviceaccount.com'):
       is_internal_user = True
 
