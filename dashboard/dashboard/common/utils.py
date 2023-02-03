@@ -490,6 +490,13 @@ def IsInternalUser():
     return cached
   try:
     is_internal_user = IsGroupMember(identity=email, group='chromeperf-access')
+
+    from dashboard.common import utils
+    from dashboard.api import api_auth
+    client_id = oauth.get_client_id(utils.OAUTH_SCOPES)
+    if client_id in api_auth.OAUTH_CLIENT_ID_ALLOWLIST:
+      is_internal_user = True
+
     SetCachedIsInternalUser(email, is_internal_user)
   except GroupMemberAuthFailed:
     return False
@@ -582,11 +589,7 @@ def IsGroupMember(identity, group):
   if cached is not None:
     return cached
 
-  logging.info(identity)
-  if identity == '1054993791011-vndct6i0bj5ubf55j6smthnbfclcj547.apps.googleusercontent.com':
-    return True
   return identity.endswith('@brave.com')
-
   try:
     discovery_url = ('https://chrome-infra-auth.appspot.com'
                      '/_ah/api/discovery/v1/apis/{api}/{apiVersion}/rest')
