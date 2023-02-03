@@ -24,7 +24,7 @@ services:
     image: dashboard-base:latest
     volumes:
       - gcloud-config:/root/.config/gcloud
-    command: [bash, -xc, "gcloud auth login && gcloud config set project chromeperf"]
+    command: [bash, -xc, "gcloud auth login && gcloud config set project brave-perf-dashboard"]
   # Update workspace enviroment for cloud build deploy.
   # We must make content available for outside gcloud client.
   cloudbuild-prepare-deployment:

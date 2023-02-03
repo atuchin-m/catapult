@@ -166,6 +166,7 @@ class EditConfigHandler(request_handler.RequestHandler):
         'user':
             user_email,
     }
+    return
     mail.send_mail(
         sender=_SENDER_ADDRESS,
         to=_NOTIFICATION_ADDRESS,

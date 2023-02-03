@@ -132,6 +132,7 @@ def _SendNotificationEmail(key, old_value, old_external_value,
       'hostname': app_identity.get_default_version_hostname(),
       'user': users.get_current_user().email(),
   }
+  return
   mail.send_mail(
       sender=_SENDER_ADDRESS,
       to=_NOTIFICATION_ADDRESS,

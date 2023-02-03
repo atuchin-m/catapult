@@ -7,9 +7,9 @@ threadsafe: false
 instance_class: F4
 automatic_scaling:
   max_concurrent_requests: 80
-  max_instances: 150
+  max_instances: 2
   max_pending_latency: automatic
-  min_instances: 1
+  min_instances: 0
   target_cpu_utilization: 0.8
 
 libraries:

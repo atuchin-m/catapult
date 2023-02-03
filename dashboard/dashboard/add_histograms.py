@@ -33,7 +33,7 @@ from tracing.value import histogram_set
 from tracing.value.diagnostics import diagnostic
 from tracing.value.diagnostics import reserved_infos
 
-TASK_QUEUE_NAME = 'histograms-queue'
+TASK_QUEUE_NAME = 'histogram-queue'
 
 _RETRY_PARAMS = cloudstorage.RetryParams(backoff_factor=1.1)
 _TASK_RETRY_LIMIT = 4
@@ -229,7 +229,7 @@ class AddHistogramsHandler(api_request_handler.ApiRequestHandler):
       raise api_request_handler.BadRequestError('Missing "data" parameter')
 
     filename = uuid.uuid4()
-    params = {'gcs_file_path': '/add-histograms-cache/%s' % filename}
+    params = {'gcs_file_path': '/brave-perf-add-histograms-cache/%s' % filename}
 
     gcs_file = cloudstorage.open(
         params['gcs_file_path'],

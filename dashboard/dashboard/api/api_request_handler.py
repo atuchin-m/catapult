@@ -17,6 +17,7 @@ from dashboard.api import api_auth
 from dashboard.common import utils
 
 _ALLOWED_ORIGINS = [
+    'brave-perf-dashboard.appspot.com',
     'chromeperf.appspot.com',
     'pinpoint-dot-chromeperf.appspot.com',
     'chromiumdash.appspot.com',

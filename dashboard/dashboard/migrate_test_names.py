@@ -480,6 +480,7 @@ def _SendNotificationEmail(old_test_key, new_test_key):
       'old_test_path': utils.TestPath(old_test_key),
       'new_test_path': utils.TestPath(new_test_key),
   }
+  return
   mail.send_mail(
       sender='gasper-alerts@google.com',
       to='chrome-performance-monitoring-alerts@google.com',
