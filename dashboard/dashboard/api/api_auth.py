@@ -39,12 +39,9 @@ OAUTH_CLIENT_ID_ALLOWLIST = [
     # luci-auth command.
     '446450136466-2hr92jrq8e6i4tnsa56b52vacp7t3936.apps.googleusercontent.com',
 
-    #TODO(atuchin): add brave sercice accounts here, delete some google entries
-    '100335329510016050185',
-    #(chudson):add GCP project oauth clientID
-    '1054993791011-qgn013uh0dpdv3t2ksotobg3i8112btn.apps.googleusercontent.com',
-    #(chudson):add additional desktop app type clientID
-    '1054993791011-vndct6i0bj5ubf55j6smthnbfclcj547.apps.googleusercontent.com',
+    #TODO(atuchin): add other brave sercice accounts here, delete some google entries
+    # a debug account to upload results
+    '101238498408187417812',
 ]
 
 
