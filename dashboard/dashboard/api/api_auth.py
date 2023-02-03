@@ -15,6 +15,12 @@ from dashboard.common import datastore_hooks
 from dashboard.common import utils
 
 OAUTH_CLIENT_ID_ALLOWLIST = [
+    #TODO(atuchin): add other brave service accounts here
+    # a debug account to upload results
+    '101238498408187417812',
+]
+
+CHROMIUM_OAUTH_CLIENT_ID_ALLOWLIST = [
     # This oauth client id is from Pinpoint.
     '62121018386-aqdfougp0ddn93knqj6g79vvn42ajmrg.apps.googleusercontent.com',
     # This oauth client id is from the 'chromeperf' API console.
@@ -38,10 +44,6 @@ OAUTH_CLIENT_ID_ALLOWLIST = [
     # allow accessing the APIs by authorized users that generate tokens via
     # luci-auth command.
     '446450136466-2hr92jrq8e6i4tnsa56b52vacp7t3936.apps.googleusercontent.com',
-
-    #TODO(atuchin): add other brave sercice accounts here, delete some google entries
-    # a debug account to upload results
-    '101238498408187417812',
 ]
 
 
