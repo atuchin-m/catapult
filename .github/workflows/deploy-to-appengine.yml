@@ -10,6 +10,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Set up Python 2 and deploy via script
+        uses: actions/setup-python@v2.3.0
+        with:
+          python-version: '2.x'
       - name: Setup Google Cloud SDK
         uses: google-github-actions/setup-gcloud@v0.2.1
         with:
@@ -17,8 +21,4 @@ jobs:
           project_id: 'brave-perf-dashboard'
           service_account_key: ${{ secrets.GCP_SA_KEY }}
           export_default_credentials: true
-      - name: Set up Python 2 and deploy via script
-        uses: actions/setup-python@v2.3.0
-        with:
-          python-version: '2.x'
       - run: python dashboard/bin/deploy --promote app.yaml api.yaml upload.yaml upload-processing.yaml dispatch.yaml index.yaml
