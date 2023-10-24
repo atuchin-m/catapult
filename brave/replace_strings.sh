@@ -23,7 +23,7 @@ REPLACES=(
   "s/mail.send_mail/raise NotImplementedError(\'calling send_mail\'); mail.send_mail_to_admins/g"
 
 # Disable other .appspot.com domains
-  "s/[-,a-z,A-Z,0-9,_,.]*.appspot.com/brave-perf-dashboard.appspot.com/g"
+  "s/[-,a-z,A-Z,0-9,_]*.appspot.com/brave-perf-dashboard.appspot.com/g"
 )
 for ((i = 0; i < ${#REPLACES[@]}; i++)); do
   replace=${REPLACES[$i]}
