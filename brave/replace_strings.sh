@@ -28,5 +28,6 @@ REPLACES=(
 for ((i = 0; i < ${#REPLACES[@]}; i++)); do
   replace=${REPLACES[$i]}
   echo $replace
-  echo -n "$files" | xargs -I{} sed -i "" "$replace" {}
+  echo -n "$files" | xargs -I{} sed -i.back "$replace" {}
 done
+find . -iname "*.back" | xargs rm
