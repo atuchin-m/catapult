@@ -27,3 +27,5 @@ jobs:
         with:
           python-version: '3.7'
       - run: python dashboard/bin/deploy --promote app.yaml api.yaml upload.yaml upload-processing.yaml dispatch.yaml index.yaml
+        env:
+          VERSION: ${{github.run_number}}
