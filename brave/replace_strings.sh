@@ -7,7 +7,7 @@ files=$(echo "$files" | egrep -v '(_|-|/)test(s)?\.py$|(_|-|/)test(s)?\.html$|/t
 REPLACES=(
 # Core changes
   "s/chromeperf/brave-perf-dashboard/g"
-  "s/add-histograms-cache/add-histogram-cache/g"
+  "s/add-histograms-cache/brave-perf-add-histograms-cache/g"
   "s/histograms-queue/histograms-queue/g"
 
 # UI changes
