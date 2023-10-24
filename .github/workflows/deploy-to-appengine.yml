@@ -2,7 +2,7 @@ name: Deploy to App Engine
 
 on:
   push:
-    branches: [ brave-perf-dashboard ]
+    branches: [ brave-perf-dashboard-py3]
 
 jobs:
   deploy-to-appengine:
@@ -10,6 +10,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
+      - id: 'replace-strings'
+        run: brave/replace_strings.sh
+
       - id: 'auth'
         uses: 'google-github-actions/auth@v1'
         with:
