@@ -8,7 +8,7 @@ REPLACES=(
 # Core changes
   "s/chromeperf/brave-perf-dashboard/g"
   "s/add-histograms-cache/brave-perf-add-histograms-cache/g"
-  "s/histograms-queue/histograms-queue/g"
+  "s/histograms-queue/histogram-queue/g"
 
 # UI changes
   "s/Chrome Performance/Brave Performance/g"
